@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fan.dao.SysUserDao">
+    <resultMap id="userMap" type="com.fan.pojo.SysUser">
+        <id column="id" property="id"></id>
+        <result column="tel" property="tel"></result>
+    </resultMap>
+    <select id="findTel" parameterType="java.lang.String" resultType="com.fan.pojo.SysUser">
+        select * from sys_user where tel = #{tel}
+    </select>
+    <insert id="insertTel" parameterType="com.fan.pojo.SysUser">
+        insert into sys_user (tel,password,email,invitation)
+         VALUES (#{tel},#{password},#{email},#{invitation})
+    </insert>
+    <select id="findId" parameterType="int" resultType="com.fan.pojo.SysUser">
+        select * from sys_User where id = #{id}
+    </select>
+    <update id="updatePassword" parameterType="com.fan.pojo.SysUser">
+        update sys_user set password = #{password} where id = #{id}
+    </update>
+</mapper>

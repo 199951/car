@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fan.dao.SysCityDao">
+    <select id="findCity" resultType="com.fan.pojo.SysCity">
+        select * from sys_city where pid = #{pid}
+    </select>
+    <select id="findCitys" resultType="com.fan.pojo.SysCity">
+        select * from sys_city where id = #{id}
+    </select>
+</mapper>

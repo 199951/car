@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fan.dao.SysOrderDao">
+    <resultMap id="orderMap" type="com.fan.pojo.SysOrder">
+        <result column="oid" property="oid"></result>
+        <result column="oprice" property="oprice"></result>
+        <result column="cname" property="cname"></result>
+        <result column="getcity" property="getcity"></result>
+        <result column="backcity" property="backcity"></result>
+        <result column="ostatus" property="ostatus"></result>
+    </resultMap>
+
+    <select id="findOrder" parameterType="java.lang.Integer" resultMap="orderMap" >
+           select o.id oid,o.oprice oprice,c.name cname,city.name getcity,back.name backcity,o.status ostatus
+           from sys_order o
+           inner join sys_car c
+           on o.cid = c.id
+           inner join sys_city city
+           on o.getid = city.id
+           inner join sys_city back
+           on o.backid = back.id
+           where uid = #{uid}
+    </select>
+    <delete id="deleteOrder" parameterType="int">
+        delete from sys_order where id = #{id}
+    </delete>
+    <insert id="addOrder" parameterType="com.fan.pojo.Order">
+        insert into sys_order (id,cid,uid,getid,backid,oprice,status)
+        values (#{id},#{cid},#{uid},#{getid},#{backid},#{oprice},#{status})
+    </insert>
+</mapper>

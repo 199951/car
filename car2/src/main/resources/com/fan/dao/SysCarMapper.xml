@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fan.dao.SysCarDao">
+    <resultMap id="BaseResultMap" type="com.fan.pojo.SysCar">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="type" jdbcType="VARCHAR" property="type" />
+        <result column="sitnum" jdbcType="INTEGER" property="sitnum" />
+        <result column="cid" jdbcType="INTEGER" property="cid" />
+        <result column="price" jdbcType="DOUBLE" property="price" />
+        <result column="number" jdbcType="INTEGER" property="number" />
+        <result column="picture" jdbcType="VARCHAR" property="picture" />
+    </resultMap>
+    <select id="findByPrice" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select * from sys_car where  sys_car.cid = #{cid}
+        order by sys_car.price DESC
+    </select>
+    <select id="findNumber" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select * from sys_car where  sys_car.cid = #{cid}
+        order by sys_car.number DESC
+    </select>
+    <select id="findCitys1" resultType="com.fan.pojo.SysCity">
+        select * from sys_city where id = #{id}
+    </select>
+    <select id="findCar" resultType="com.fan.pojo.SysCar">
+        select * from sys_car where id = #{id}
+    </select>
+</mapper>
